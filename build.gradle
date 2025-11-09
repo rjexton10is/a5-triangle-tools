@@ -1,7 +1,15 @@
 apply plugin: 'java'
 
+
+
 java {
-    sourceCompatibility = 21
+    sourceCompatibility = 17
+}
+
+allprojects{
+    repositories {
+        mavenCentral()
+    }
 }
 
 subprojects.each { subproject ->
@@ -10,7 +18,12 @@ subprojects.each { subproject ->
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    
+
+    manifest {
+        attributes(
+                'Main-Class': 'Triangle.Compiler'
+        )
+    }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
