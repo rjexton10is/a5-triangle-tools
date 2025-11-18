@@ -1,8 +1,6 @@
-
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
-
 
 java {
     sourceCompatibility = 17
@@ -10,41 +8,27 @@ java {
 
 repositories {
     mavenCentral()
-    maven{url 'https://jitpack.io'}
 }
 
 
 dependencies {
-	implementation project(':Triangle.AbstractMachine')
-    //implementation 'com.github.spullara.cli-parser:cli-parser:1.1.6'
+    implementation project(':Triangle.AbstractMachine')
     implementation group: 'com.github.spullara.cli-parser', name: 'cli-parser', version: '1.1.5'
     implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
     implementation group: 'com.opencsv', name: 'opencsv', version: '3.7'
-
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-	//testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-
 }
 
-//
-//jar {
-//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//
-//    from {
-//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-//    }
-//}
-
-    application {
-        mainClass = 'triangle.Compiler'
-    }
+application {
+    mainClass = 'Triangle.Compiler'
+}
 
 // allow access to programs for unit tests
-    sourceSets.test.resources.srcDir file("$rootDir/programs")
+sourceSets.test.resources.srcDir file("$rootDir/programs")
 
-    test {
-        finalizedBy jacocoTestReport // report is always generated after tests run
-    }
-    jacocoTestReport {
-        dependsOn test // tests are required to run before generating the report
-    }
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}

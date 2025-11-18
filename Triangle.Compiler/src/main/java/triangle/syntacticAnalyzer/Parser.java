@@ -280,24 +280,36 @@ public class Parser {
 		switch (currentToken.kind) {
 
 		case IDENTIFIER: {
-			Identifier iAST = parseIdentifier();
-			if (currentToken.kind == Token.Kind.LPAREN) {
-				acceptIt();
-				ActualParameterSequence apsAST = parseActualParameterSequence();
-				accept(Token.Kind.RPAREN);
-				finish(commandPos);
-				commandAST = new CallCommand(iAST, apsAST, commandPos);
+            Identifier iAST = parseIdentifier();
+            if (currentToken.kind == Token.Kind.LPAREN) {
+                acceptIt();
+                ActualParameterSequence apsAST = parseActualParameterSequence();
+                accept(Token.Kind.RPAREN);
+                finish(commandPos);
+                commandAST = new CallCommand(iAST, apsAST, commandPos);
 
-			} else {
+            } else {
 
-				Vname vAST = parseRestOfVname(iAST);
-				accept(Token.Kind.BECOMES);
-				Expression eAST = parseExpression();
-				finish(commandPos);
-				commandAST = new AssignCommand(vAST, eAST, commandPos);
-			}
-		}
-			break;
+                Vname vAST = parseRestOfVname(iAST);
+
+                if (currentToken.kind == Token.Kind.OPERATOR && currentToken.spelling.equals("**")) {
+                    acceptIt();
+                    IntegerLiteral il = new IntegerLiteral("2", commandPos);
+                    IntegerExpression ie = new IntegerExpression(il, commandPos);
+                    VnameExpression vne = new VnameExpression(vAST, commandPos);
+                    Operator op = new Operator("*", commandPos);
+                    Expression eAST = new BinaryExpression(vne, op, ie, commandPos);
+                    finish(commandPos);
+                    Command AST = new AssignCommand(vAST, eAST, commandPos);
+                } else {
+                    accept(Token.Kind.BECOMES);
+                    Expression eAST = parseExpression();
+                    finish(commandPos);
+                    commandAST = new AssignCommand(vAST, eAST, commandPos);
+                }
+            }
+            break;
+        }
 
 		case BEGIN:
 			acceptIt();

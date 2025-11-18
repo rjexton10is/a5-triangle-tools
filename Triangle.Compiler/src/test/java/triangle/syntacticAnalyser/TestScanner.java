@@ -18,6 +18,10 @@ public class TestScanner {
 	
 	/* some individual unit tests for helper methods in Scanner */
 
+
+
+
+
 	@Test
 	public void testIsDigit() {
 		assertTrue(Scanner.isDigit('0'));
@@ -48,6 +52,13 @@ public class TestScanner {
 	
 	
 	/* these tests all try to compile example programs... */
+
+
+    @Test public void testDoubleCommand() {
+        compileExpectSuccess("/double.tri");
+    }
+
+
 	
 	@Test
 	public void testHi() {

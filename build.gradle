@@ -1,33 +1,20 @@
 apply plugin: 'java'
 
-
-
 java {
     sourceCompatibility = 17
 }
 
-allprojects{
-    repositories {
-        mavenCentral()
-    }
-}
-
 subprojects.each { subproject ->
-  evaluationDependsOn(subproject.path)
+    evaluationDependsOn(subproject.path)
 }
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-    manifest {
-        attributes(
-                'Main-Class': 'Triangle.Compiler'
-        )
-    }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 
 
-  from subprojects.sourceSets.main.output
+    from subprojects.sourceSets.main.output
 }
