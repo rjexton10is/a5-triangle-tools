@@ -32,3 +32,15 @@ test {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
+
+jar {
+    manifest{
+        attributes 'Main-Class': 'triangle.Compiler'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    dependsOn ':Triangle.AbstractMachine:jar'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

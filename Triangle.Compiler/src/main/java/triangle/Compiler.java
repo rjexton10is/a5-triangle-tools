@@ -37,13 +37,15 @@ public class Compiler {
 
 
     @Argument(alias = "o",description = "The output file name")
-    private static String objectName = "obj.tam";
+    public String objectName = "obj.tam";
     @Argument(alias = "t",description = "Toggle for showing tree or not")
-    private static boolean showTree = false;
-    @Argument(alias = "f",description = "Toggle for implementing toggle or not")
-    private static boolean folding = false;
+    public boolean showTree = false;
+    @Argument(alias = "f",description = "Toggle for implementing folding or not")
+    public boolean folding = false;
+    @Argument(alias = "ta", description = "Toggle to show an updated tree after folding")
+    public boolean showTreeAfter = false;
     @Argument(alias = "i",description = "Input File Path",required = true)
-    private static String sourceName;
+    public String sourceName;
 
     private static Scanner scanner;
     private static Parser parser;
@@ -63,13 +65,16 @@ public class Compiler {
      * @param objectName   the name of the file containing the object program.
      * @param showingAST   true iff the AST is to be displayed after contextual
      *                     analysis
-     * @param showingTable true iff the object description details are to be
+     * @param showingASTAfterFolding   true iff the AST is to be displayed after folding
+     *
+     *
+//     * @param showingTable true iff the object description details are to be
      *                     displayed during code generation (not currently
      *                     implemented).
      * @return true iff the source program is free of compile-time errors, otherwise
      *         false.
      */
-    static boolean compileProgram(String sourceName, String objectName, boolean showingAST, boolean showingTable) {
+    static boolean compileProgram(String sourceName, String objectName, boolean showingAST, boolean showingASTAfterFolding, boolean folding) {
 
         System.out.println("********** " + "Triangle Compiler (Java Version 2.1)" + " **********");
 
@@ -101,12 +106,18 @@ public class Compiler {
                 drawer.draw(theAST);
             }
             if (folding) {
+                System.out.println("folding");
                 theAST.visit(new ConstantFolder());
-            }
 
+                if(showingASTAfterFolding){
+                    System.out.println("ASTAfter");
+                    drawer.draw(theAST);
+                }
+            }
+//pass false for showing table since it has not been implemented as a cli-parser argument
             if (reporter.getNumErrors() == 0) {
                 System.out.println("Code Generation ...");
-                encoder.encodeRun(theAST, showingTable); // 3rd pass
+                encoder.encodeRun(theAST, false); // 3rd pass
             }
         }
 
@@ -126,7 +137,36 @@ public class Compiler {
      * @param args the only command-line argument to the program specifies the
      *             source filename.
      */
+
+
     public static void main(String[] args) {
+        // 1. Create an instance (This is the fix!)
+        Compiler compilerCLI = new Compiler();
+
+        // 2. Parse args into the instance variable 'compilerCLI'
+        // Do NOT use 'Compiler.class' here.
+        Args.parseOrExit(compilerCLI, args);
+
+        // 3. Debug to prove it works
+        System.out.println("DEBUG: Parsing Complete.");
+        System.out.println("DEBUG: File = " + compilerCLI.sourceName);
+        System.out.println("DEBUG: Folding = " + compilerCLI.folding);
+
+        // 4. Pass the variables FROM the instance
+        var compiledOK = compileProgram(
+                compilerCLI.sourceName,
+                compilerCLI.objectName,
+                compilerCLI.showTree,
+                compilerCLI.showTreeAfter,
+                compilerCLI.folding
+        );
+
+        // 5. Update exit logic
+        if (!compilerCLI.showTree && !compilerCLI.showTreeAfter) {
+            System.exit(compiledOK ? 0 : 1);
+        }
+    }
+    //    public static void main(String[] args) {
 
         /**
          * Since source Name path is configured to an argument
@@ -137,17 +177,22 @@ public class Compiler {
 //			System.out.println("Usage: tc filename [-o=outputfilename] [tree] [folding]");
 //			System.exit(1);
 //		}
-
-        Args.parseOrExit(Compiler.class,args);
+//
+//        Args.parseOrExit(Compiler.class,args);
 
 //		String sourceName = args[0];
 
-        var compiledOK = compileProgram(sourceName, objectName, showTree, false);
-
-        if (!showTree) {
-            System.exit(compiledOK ? 0 : 1);
-        }
-    }
+//        var compiledOK = compileProgram(sourceName, objectName, showTree, showTreeAfter, folding);
+//
+//        System.out.println("DEBUG: Parsing Complete.");
+//        System.out.println("DEBUG: File = " + sourceName);
+//        System.out.println("DEBUG: Folding (-f) = " + folding);
+//        System.out.println("DEBUG: ShowTree (-t) = " + showTree);
+//
+//        if (!showTree) {
+//            System.exit(compiledOK ? 0 : 1);
+//        }
+//    }
 
 //	private static void parseArgs(String[] args) {
 //		for (String s : args) {
