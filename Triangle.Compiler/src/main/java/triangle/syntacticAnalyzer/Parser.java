@@ -300,7 +300,7 @@ public class Parser {
                     Operator op = new Operator("*", commandPos);
                     Expression eAST = new BinaryExpression(vne, op, ie, commandPos);
                     finish(commandPos);
-                    Command AST = new AssignCommand(vAST, eAST, commandPos);
+                    commandAST = new AssignCommand(vAST, eAST, commandPos);
                 } else {
                     accept(Token.Kind.BECOMES);
                     Expression eAST = parseExpression();

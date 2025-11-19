@@ -1,0 +1,105 @@
+[33mcommit 710156ca793a90f3c0574a27d7a3ab55bd23a419[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: rjexton10is <rjexton101@gmail.com>
+Date:   Tue Nov 18 13:46:49 2025 +0000
+
+    question3
+
+[33mcommit 8f4381943e09c97f629cc1dfcd86beb2696405d7[m
+Author: rjexton10is <rjexton101@gmail.com>
+Date:   Sun Nov 9 14:33:17 2025 +0000
+
+    almost initial commit
+
+[33mcommit 679f6725096c150e03ac35dd251df8cd41e25dd6[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Fri Aug 15 16:37:39 2025 +0100
+
+    Update to Java 21 and copyright notices
+
+[33mcommit cb593a3b76d966d4fe69bb2689c0e8e9ed5a8142[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Wed Nov 13 15:55:57 2024 +0000
+
+    Added jacoco to build script
+
+[33mcommit 70780e05acc6a5f8432f47d70c2bde2b3f69c6e5[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Thu Oct 10 11:30:14 2024 +0100
+
+    Added tests to TestScanner
+
+[33mcommit ff0d66bbec677c2fa3a42a6562287de5b7c06319[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Tue Sep 10 11:47:17 2024 +0100
+
+    Minor formatting and additional comment.
+
+[33mcommit 185707be21e54a9e3ead4c4aed83e0ffec821496[m
+Merge: 9277d61 b88bf5c
+Author: Sandy Brownlee <sandybrownlee@users.noreply.github.com>
+Date:   Fri Sep 6 12:12:46 2024 +0100
+
+    Merge pull request #24 from sandybrownlee/2024-wip
+    
+    2024 updates
+
+[33mcommit b88bf5c9ee127aa0bc01bd38965bca3dc6f252cd[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Thu Sep 5 17:49:44 2024 +0100
+
+    Extra commenting
+
+[33mcommit d56c67ab849d5c4f9b2800221b33beaf612f0dde[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Tue Sep 3 16:33:42 2024 +0100
+
+    Changed tokens list to enum; amended dates on all files
+
+[33mcommit c834f4ed0854f32d82562c9bfa3238c42ac8d2c6[m[33m ([m[1;31morigin/java17[m[33m)[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Fri May 24 17:58:09 2024 +0100
+
+    updated root java version to 17
+
+[33mcommit a25e6d76ca09e7bf6d3755b6979575ffad61f8ed[m
+Merge: 4b75ecc 9277d61
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Fri May 24 17:40:21 2024 +0100
+
+    Merge branch 'master' into java17
+
+[33mcommit 9277d61249762a49eca5ff922b244a4019541432[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Tue Sep 26 12:19:52 2023 +0100
+
+    updated copyrights etc
+
+[33mcommit b08e24d67468cf78dba4c872ec95e60fa73f9a8a[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Fri Sep 15 16:48:45 2023 +0100
+
+    build file fixes
+
+[33mcommit 7576914c70bfac023c9fb7e8471b80f4fc29369a[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Fri Sep 15 15:56:41 2023 +0100
+
+    updated gradle to 8.3
+
+[33mcommit 4b75ecced23c0479a7a6706259f60d2b839727ee[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Mon Sep 4 14:11:41 2023 +0100
+
+    Initial checking of J17 code
+
+[33mcommit a6af1ed916314edc56c1c1c92b60f2a3fe6ab5e3[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Mon Sep 4 13:48:18 2023 +0100
+
+    added ignore list
+
+[33mcommit f64edc2be1506dd6a2bee48f189b74d90d3af433[m
+Author: Sandy Brownlee <sbr@cs.stir.ac.uk>
+Date:   Mon Sep 4 13:46:42 2023 +0100
+
+    initial checkin
