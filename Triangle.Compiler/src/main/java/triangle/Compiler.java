@@ -140,19 +140,17 @@ public class Compiler {
 
 
     public static void main(String[] args) {
-        // 1. Create an instance (This is the fix!)
+
         Compiler compilerCLI = new Compiler();
 
-        // 2. Parse args into the instance variable 'compilerCLI'
-        // Do NOT use 'Compiler.class' here.
+
         Args.parseOrExit(compilerCLI, args);
 
-        // 3. Debug to prove it works
         System.out.println("DEBUG: Parsing Complete.");
         System.out.println("DEBUG: File = " + compilerCLI.sourceName);
         System.out.println("DEBUG: Folding = " + compilerCLI.folding);
 
-        // 4. Pass the variables FROM the instance
+
         var compiledOK = compileProgram(
                 compilerCLI.sourceName,
                 compilerCLI.objectName,
@@ -161,7 +159,7 @@ public class Compiler {
                 compilerCLI.folding
         );
 
-        // 5. Update exit logic
+       
         if (!compilerCLI.showTree && !compilerCLI.showTreeAfter) {
             System.exit(compiledOK ? 0 : 1);
         }
