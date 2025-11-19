@@ -317,6 +317,19 @@ public class Parser {
 			accept(Token.Kind.END);
 			break;
 
+
+
+
+        case LCURLY:
+            acceptIt();
+            commandAST = parseCommand();
+            accept(Token.Kind.RCURLY);
+
+            break;
+
+
+
+
 		case LET: {
 			acceptIt();
 			Declaration dAST = parseDeclaration();
@@ -348,12 +361,15 @@ public class Parser {
 			commandAST = new WhileCommand(eAST, cAST, commandPos);
 		}
 			break;
+            
+
 
 		case SEMICOLON:
 		case END:
 		case ELSE:
 		case IN:
 		case EOT:
+        case RCURLY:
 
 			finish(commandPos);
 			commandAST = new EmptyCommand(commandPos);

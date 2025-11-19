@@ -159,7 +159,7 @@ public class Compiler {
                 compilerCLI.folding
         );
 
-       
+
         if (!compilerCLI.showTree && !compilerCLI.showTreeAfter) {
             System.exit(compiledOK ? 0 : 1);
         }

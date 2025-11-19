@@ -58,6 +58,9 @@ public class TestScanner {
         compileExpectSuccess("/double.tri");
     }
 
+    @Test public void testCurlyBracketWrapper(){
+       compileExpectSuccess("/while-curly.tri");
+    }
 
 	
 	@Test
