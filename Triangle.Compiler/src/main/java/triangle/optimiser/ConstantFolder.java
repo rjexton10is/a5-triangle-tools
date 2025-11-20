@@ -582,12 +582,27 @@ public class ConstantFolder implements ActualParameterVisitor<Void, AbstractSynt
 				foldedValue = int1 + int2;
 			}
 
+            else if (o.decl == StdEnvironment.equalDecl) {
+                foldedValue = int1 == int2;
+            } else if (o.decl == StdEnvironment.unequalDecl) {
+                foldedValue = int1 != int2;
+            } else if (o.decl == StdEnvironment.lessDecl) {
+                foldedValue = int1 < int2;
+            } else if (o.decl == StdEnvironment.notgreaterDecl) {
+                foldedValue = int1 <= int2;
+            } else if (o.decl == StdEnvironment.greaterDecl) {
+                foldedValue = int1 > int2;
+            } else if (o.decl == StdEnvironment.notlessDecl) {
+                foldedValue = int1 >= int2;
+            }
+
 			if (foldedValue instanceof Integer) {
 				IntegerLiteral il = new IntegerLiteral(foldedValue.toString(), node1.getPosition());
 				IntegerExpression ie = new IntegerExpression(il, node1.getPosition());
 				ie.type = StdEnvironment.integerType;
 				return ie;
 			} else if (foldedValue instanceof Boolean) {
+                
 				/* currently not handled! */
 			}
 		}
