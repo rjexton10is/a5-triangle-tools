@@ -361,7 +361,13 @@ public class Parser {
 			commandAST = new WhileCommand(eAST, cAST, commandPos);
 		}
 			break;
-            
+
+        case LoopWhile:{
+            acceptIt();
+            Command c1AST = parseExpression();
+
+        }
+
 
 
 		case SEMICOLON:
